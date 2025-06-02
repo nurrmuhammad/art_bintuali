@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Art_Bintuali – Bosh sahifa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: #ede8df;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.96);
+            box-shadow: 0 2px 16px rgba(150, 120, 80, 0.09);
+            border-radius: 0 0 22px 22px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .logo { font-size: 22px; font-weight: bold; color: #a48252; letter-spacing: 1px;}
+        .nav-links { display: flex; gap: 27px;}
+        .nav-item {
+            font-size: 16px;
+            text-decoration: none;
+            color: #856846;
+            font-weight: 500;
+            padding: 3px 0;
+            transition: color 0.3s;
+        }
+        .nav-item:hover { color: #d0b991; }
+        /* HERO SECTION */
+        .hero {
+            width: 100vw;
+            min-height: 79vh;
+            position: relative;
+            background: linear-gradient(105deg, rgba(60,45,24,0.62) 30%, rgba(130,100,60,0.44) 100%),
+                        url('/static/img/hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-content {
+            color: #fff;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 60px 20px 65px 20px;
+            text-align: center;
+            z-index: 2;
+        }
+        .hero-title {
+            font-size: 2.9rem;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            margin-bottom: 1.05rem;
+            color: #ffe7cc;
+            text-shadow: 0 6px 32px rgba(70,38,4,0.14);
+        }
+        .hero-desc {
+            font-size: 1.23rem;
+            font-weight: 500;
+            margin-bottom: 1.8rem;
+            color: #fde7b0;
+            text-shadow: 0 4px 13px rgba(70,38,4,0.09);
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 14px 38px;
+            border-radius: 27px;
+            background: #ffe7cc;
+            color: #8c6337;
+            font-size: 1.14rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: .3px;
+            margin-top: 10px;
+            transition: background 0.15s, color 0.15s, transform 0.13s;
+            box-shadow: 0 3px 22px rgba(120,98,60,0.10);
+        }
+        .hero-btn:hover {
+            background: #fff;
+            color: #a98d61;
+            transform: scale(1.06);
+        }
+        .hero-links {
+            margin-top: 30px;
+        }
+        .hero-link {
+            color: #ffe7cc;
+            background: rgba(180,140,100,0.17);
+            font-size: 1.13rem;
+            text-decoration: none;
+            padding: 7px 20px;
+            border-radius: 18px;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: background 0.14s, color 0.14s;
+        }
+        .hero-link:hover {
+            background: #fff;
+            color: #a48252;
+        }
+        @media (max-width: 900px) {
+            .hero-title { font-size: 2rem;}
+            .hero-content { padding: 28px 7px 34px 7px;}
+            .hero { min-height: 52vh;}
+            .navbar { padding: 12px 10px;}
+        }
+        @media (max-width: 700px) {
+            .hero-title { font-size: 1.25rem;}
+            .hero-desc { font-size: 1.02rem;}
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">art_bintuali</div>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item">Galereya</a>
+            <a href="/order" class="nav-item">Buyurtma</a>
+            <a href="/about" class="nav-item">Biz haqimizda</a>
+            <a href="/contact" class="nav-item">Kontakt</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-title">Art_Bintuali — hayotingizga san’at olib kiramiz!</div>
+            <div class="hero-desc">
+                Zamonaviy va an’anaviy san’atning go‘zalligini biz bilan kashf eting.<br>
+                Kolligrafiya, devor uchun eksklyuziv rasmlar va maxsus buyurtmalar.
+            </div>
+            <a href="/gallery" class="hero-btn">Galereyani ko‘rish</a>
+            <div class="hero-links">
+                <a href="https://t.me/bintuali_art" target="_blank" class="hero-link">Telegram</a>
+                <a href="https://instagram.com/art_bintuali" target="_blank" class="hero-link">Instagram</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

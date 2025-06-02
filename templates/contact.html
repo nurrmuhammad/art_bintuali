@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontakt – art_bintuali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eee8de 0%, #b9b3aa 100%);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.93);
+            box-shadow: 0 2px 16px rgba(140, 130, 100, 0.09);
+            border-radius: 0 0 22px 22px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .logo { font-size: 22px; font-weight: bold; color: #7c6855; letter-spacing: 0.5px;}
+        .nav-links { display: flex; gap: 27px;}
+        .nav-item { font-size: 16px; text-decoration: none; color: #705f46; font-weight: 500; padding: 3px 0; transition: color 0.3s;}
+        .nav-item:hover { color: #ad9170; }
+        .contact-card {
+            max-width: 400px;
+            margin: 70px auto 0 auto;
+            background: #f9f7f3;
+            border-radius: 18px;
+            box-shadow: 0 7px 34px rgba(110,100,80,0.12);
+            padding: 40px 34px 32px 34px;
+        }
+        .contact-card h2 {
+            color: #715b3d;
+            font-size: 29px;
+            margin-bottom: 19px;
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #7c6c54;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+        .contact-link {
+            color: #ad9170;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: color .18s;
+        }
+        .contact-link:hover { color: #7c6855; text-decoration: underline; }
+        .contact-icon {
+            width: 22px; vertical-align: middle; margin-right: 6px; margin-bottom: 3px;
+        }
+        .phone-num {
+            font-size: 17px; color: #8e785c; font-weight: 600; letter-spacing:1px;
+        }
+        @media (max-width: 700px) {
+            .navbar { flex-direction: column; gap: 7px; align-items: flex-start; padding: 13px 7px;}
+            .contact-card {padding:22px 10px 14px 10px; margin-top: 30px;}
+            .contact-card h2 {font-size: 21px;}
+            .phone-num {font-size: 15px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" data-aos="fade-down" data-aos-duration="700">
+        <div class="logo">art_bintuali</div>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item">Galereya</a>
+            <a href="/order" class="nav-item">Buyurtma</a>
+            <a href="/about" class="nav-item">Biz haqimizda</a>
+            <a href="/contact" class="nav-item">Kontakt</a>
+        </nav>
+    </header>
+
+    <div class="contact-card" data-aos="zoom-in" data-aos-delay="350">
+        <h2>Kontakt</h2>
+        <div>
+            <span class="info-label">
+                <img class="contact-icon" src="https://img.icons8.com/color/48/000000/instagram-new.png"/>Instagram:
+            </span>
+            <a href="https://instagram.com/art_bintuali" class="contact-link" target="_blank">@art_bintuali</a>
+        </div>
+        <div style="margin-top:10px;">
+            <span class="info-label">
+                <img class="contact-icon" src="https://img.icons8.com/color/48/000000/telegram-app--v1.png"/>Telegram:
+            </span>
+            <a href="https://t.me/art_bintuali" class="contact-link" target="_blank">t.me/art_bintuali</a>
+        </div>
+        <div style="margin-top:15px;">
+            <span class="info-label">
+                <img class="contact-icon" src="https://img.icons8.com/color/48/000000/phone.png"/>Telefon:
+            </span>
+            <span class="phone-num">+998 90 884 44 44</span>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>AOS.init({ duration: 900, once: true });</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Galereya – art_bintuali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #eee8de 0%, #b9b3aa 100%);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.93);
+            box-shadow: 0 2px 16px rgba(140, 130, 100, 0.09);
+            border-radius: 0 0 22px 22px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #7c6855;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 27px;
+        }
+        .nav-item {
+            font-size: 16px;
+            text-decoration: none;
+            color: #705f46;
+            font-weight: 500;
+            position: relative;
+            padding: 3px 0;
+            transition: color 0.3s;
+        }
+        .nav-item:hover { color: #ad9170; }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 36px;
+            font-weight: 700;
+            color: #715b3d;
+            text-shadow: 0 2px 16px rgba(160,140,120,0.08);
+        }
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 12px;
+            background: #e3d7c2;
+            color: #715b3d;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(170,150,110,0.09);
+            transition: background 0.18s, color 0.19s, transform 0.15s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #bfae9b;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .gallery-block {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px 24px;
+            margin-top: 36px;
+        }
+        .card {
+            background: linear-gradient(120deg, #f9f7f3 60%, #e5dfd2 100%);
+            border-radius: 20px;
+            box-shadow: 0 2px 18px rgba(110, 100, 80, 0.10);
+            padding: 18px 18px 24px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 320px;
+            color: #7c6c54;
+            border: 1.2px solid #f0ece7;
+        }
+        .img-box {
+            width: 275px;
+            height: 220px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #ede6dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 14px rgba(170,150,110,0.06);
+        }
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 13px;
+            display: block;
+        }
+        .action-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: auto;
+        }
+        .action-btn {
+            flex: 1 1 0;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            border: none;
+            transition: background 0.17s, color 0.17s, transform 0.12s;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(170,150,110,0.06);
+            min-width: 0;
+        }
+        .order-btn {
+            background: #ad9170;
+            color: #fff;
+        }
+        .order-btn:hover {
+            background: #7c6855;
+            color: #fff4e4;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .contact-btn {
+            background: #e3d7c2;
+            color: #7c6c54;
+        }
+        .contact-btn:hover {
+            background: #ad9170;
+            color: #fff;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .empty-info {
+            text-align: center;
+            margin-top: 60px;
+            color: #ae9c80;
+            font-size: 1.13rem;
+            font-weight: 500;
+        }
+        .order-link {
+            display: inline-block;
+            margin-top: 18px;
+            background: #ad9170;
+            color: #fff;
+            padding: 9px 24px;
+            border-radius: 10px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background 0.18s, color 0.2s;
+        }
+        .order-link:hover {
+            background: #bfae9b;
+            color: #715b3d;
+        }
+        @media (max-width: 900px) {
+            .gallery-block { flex-direction: column; align-items: center; gap:18px;}
+            .card { width: 98vw; max-width: 370px; }
+            .img-box { width: 94vw; max-width: 310px; height: 42vw; max-height: 210px;}
+        }
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+                padding: 13px 6px;
+            }
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            h1 { font-size: 23px; margin-top: 20px; }
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 18px;
+            }
+            .btn {
+                width: 95vw;
+                max-width: 380px;
+                margin: 0 auto;
+                font-size: 17px;
+            }
+            .gallery-block { gap: 15px;}
+            .card {
+                width: 97vw;
+                max-width: 98vw;
+                padding: 10px 4px 16px 4px;
+            }
+            .img-box { width: 98vw; max-width: 340px; height: 45vw; max-height: 180px;}
+            .action-btns {
+                flex-direction: column;
+                gap: 8px;
+                width: 97vw;
+                max-width: 390px;
+                margin: 0 auto;
+            }
+            .action-btn {
+                width: 100%;
+                font-size: 17px;
+                padding: 11px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">art_bintuali</div>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item">Galereya</a>
+            <a href="/order" class="nav-item">Buyurtma</a>
+            <a href="/about" class="nav-item">Biz haqimizda</a>
+            <a href="/contact" class="nav-item">Kontakt</a>
+        </nav>
+    </header>
+
+    <h1>Galereya</h1>
+
+    <div class="btn-group">
+        {% for c in categories %}
+            <a href="{{ url_for('gallery', cat=c) }}" class="btn">{{ c }}</a>
+        {% endfor %}
+    </div>
+
+    {% if gallery %}
+        <div class="gallery-block">
+            {% for item in gallery %}
+                <div class="card">
+                    <div class="img-box">
+                        <img src="{{ url_for('static', filename='uploads/' ~ item.filename) }}" alt="Rasm">
+                    </div>
+                    <div class="action-btns">
+                        <a href="/order" class="action-btn order-btn">Hozir sotib olish</a>
+                        <a href="/contact" class="action-btn contact-btn">Rassom bilan bog'lanish</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-info">
+            Hozircha bu bo‘limda ishlar mavjud emas.
+            <br>
+            <a href="/order" class="order-link">Buyurtma berish</a>
+        </div>
+    {% endif %}
+</body>
+</html>

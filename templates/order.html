@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyurtma berish – art_bintuali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #eee8de 0%, #b9b3aa 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins',sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.93);
+            box-shadow: 0 2px 16px rgba(140, 130, 100, 0.09);
+            border-radius: 0 0 22px 22px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .logo { font-size: 22px; font-weight: bold; color: #7c6855; letter-spacing: 0.5px;}
+        .nav-links { display: flex; gap: 27px;}
+        .nav-item { font-size: 16px; text-decoration: none; color: #705f46; font-weight: 500; padding: 3px 0; transition: color 0.3s;}
+        .nav-item:hover, .nav-item.active { color: #ad9170; }
+        .form-wrap {
+            max-width: 410px; margin: 70px auto 0 auto;
+            background: #f9f7f3;
+            padding: 36px 26px 26px 26px;
+            border-radius: 18px;
+            box-shadow: 0 7px 34px rgba(110,100,80,0.13);
+            animation: fadeInDown 1.1s cubic-bezier(.25,.46,.45,.94);
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-60px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        h2 { text-align:center; margin-bottom:20px; color:#554737; font-size: 2.2rem;}
+        label { font-weight: 600; color: #766244;}
+        input, textarea {
+            width: 100%; margin-bottom: 17px; padding: 11px;
+            border: 1px solid #ead8bc; border-radius: 7px; font-size: 15px;
+            font-family: inherit; outline: none;
+            background: #fcfaf7;
+            color: #5c4731;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus {
+            border-color: #c3b093;
+        }
+        textarea { resize: vertical; min-height: 60px;}
+        button {
+            width: 100%; background: #ad9170; color: #fff;
+            font-size: 17px; font-weight: 600;
+            padding: 12px; border: none; border-radius: 7px;
+            cursor: pointer; transition: background .19s, color .17s;
+            margin-top: 10px;
+            box-shadow: 0 2px 10px #ead8bc6b;
+        }
+        button:hover { background: #715b3d; color: #fff;}
+        .alert-success {
+            color: #fff; background: #ad9170; padding:10px;
+            border-radius:7px; text-align:center; margin-bottom:18px;
+        }
+        @media (max-width: 700px) {
+            .navbar { flex-direction: column; gap: 7px; align-items: flex-start; padding: 13px 7px;}
+            .form-wrap {padding:22px 10px 14px 10px; margin-top: 30px;}
+            h2 { font-size: 1.3rem;}
+            button { font-size: 15px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" data-aos="fade-down" data-aos-duration="700">
+        <div class="logo">art_bintuali</div>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item">Galereya</a>
+            <a href="/order" class="nav-item active">Buyurtma</a>
+            <a href="/about" class="nav-item">Biz haqimizda</a>
+            <a href="/contact" class="nav-item">Kontakt</a>
+        </nav>
+    </header>
+
+    <div class="form-wrap" data-aos="zoom-in" data-aos-delay="330">
+        <h2>Buyurtma berish</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="post">
+            <label>Ismingiz:</label>
+            <input type="text" name="name" required>
+            <label>Telefon raqamingiz:</label>
+            <input type="text" name="phone" required>
+            <label>Buyurtma turi yoki izoh:</label>
+            <textarea name="desc" required placeholder="Qanday rasm yoki ish buyurtma qilmoqchisiz?"></textarea>
+            <button type="submit">Yuborish</button>
+        </form>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>AOS.init({ duration: 900, once: true });</script>
+</body>
+</html>
