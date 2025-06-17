@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>{{ art.title }} – art_bintuali</title>
+    <title data-i18n="title">{{ art.title }} – art_bintuali</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -32,7 +32,8 @@
         <!-- Orqaga tugmasi -->
         <a href="/"
            class="btn btn-outline-secondary d-inline-flex align-items-center mb-3 shadow-sm back-btn"
-           style="border-radius: 999px; padding: 0.5rem 1.2rem; font-weight: 500;">
+           style="border-radius: 999px; padding: 0.5rem 1.2rem; font-weight: 500;"
+           data-i18n="back-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" class="me-2" viewBox="0 0 24 24">
                 <path d="M15 18l-6-6 6-6"/>
             </svg>
@@ -44,9 +45,61 @@
             <div class="card-body">
                 <h2 class="card-title">{{ art.title }}</h2>
                 <p class="card-text">{{ art.desc }}</p>
-                <a href="/order" class="btn btn-primary">Buyurtma berish</a>
+                <a href="/order" class="btn btn-primary" data-i18n="order-btn">Buyurtma berish</a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Tarjimalar
+        const translations = {
+            "O‘z": {
+                "title": "{{ art.title }} – art_bintuali",
+                "back-btn": "Orqaga",
+                "order-btn": "Buyurtma berish"
+            },
+            "Ru": {
+                "title": "{{ art.title }} – арт_бинтуали",
+                "back-btn": "Назад",
+                "order-btn": "Сделать заказ"
+            },
+            "En": {
+                "title": "{{ art.title }} – art_bintuali",
+                "back-btn": "Back",
+                "order-btn": "Order now"
+            }
+        };
+
+        // Cookie helpers
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0;i < ca.length;i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Sahifa yuklanganda cookie-dan tilni o‘qib, matnlarni o‘zgartirish
+        document.addEventListener('DOMContentLoaded', function () {
+            let savedLang = getCookie("site_lang") || "O‘z";
+            setLanguage(savedLang);
+        });
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName.toLowerCase() === "title") {
+                        document.title = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

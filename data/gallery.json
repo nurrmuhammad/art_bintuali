@@ -22,5 +22,17 @@
         "title": "Art_colligrafiya",
         "desc": "art_colligrafiya uchun",
         "category": "art_colligrafiya"
+    },
+    {
+        "filename": "photo_2025-06-01_23-53-19.jpg",
+        "title": "Naqish",
+        "desc": "Naqish",
+        "category": "naqqoshlik"
+    },
+    {
+        "filename": "photo_2025-05-24_00-34-58.jpg",
+        "title": "Naqqoshlik",
+        "desc": "Naqish",
+        "category": "naqqoshlik"
     }
 ]

@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Galereya – art_bintuali</title>
+    <title data-i18n="title">Galereya – art_bintuali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -229,17 +229,17 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="logo">art_bintuali</div>
+        <div class="logo" data-i18n="logo">art_bintuali</div>
         <nav class="nav-links">
-            <a href="/" class="nav-item">Bosh sahifa</a>
-            <a href="/gallery" class="nav-item">Galereya</a>
-            <a href="/order" class="nav-item">Buyurtma</a>
-            <a href="/about" class="nav-item">Biz haqimizda</a>
-            <a href="/contact" class="nav-item">Kontakt</a>
+            <a href="/" class="nav-item" data-i18n="home">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item" data-i18n="gallery">Galereya</a>
+            <a href="/order" class="nav-item" data-i18n="order">Buyurtma</a>
+            <a href="/about" class="nav-item" data-i18n="about">Biz haqimizda</a>
+            <a href="/contact" class="nav-item" data-i18n="contact">Kontakt</a>
         </nav>
     </header>
 
-    <h1>Galereya</h1>
+    <h1 data-i18n="gallery-title">Galereya</h1>
 
     <div class="btn-group">
         {% for c in categories %}
@@ -255,18 +255,97 @@
                         <img src="{{ url_for('static', filename='uploads/' ~ item.filename) }}" alt="Rasm">
                     </div>
                     <div class="action-btns">
-                        <a href="/order" class="action-btn order-btn">Hozir sotib olish</a>
-                        <a href="/contact" class="action-btn contact-btn">Rassom bilan bog'lanish</a>
+                        <a href="/order" class="action-btn order-btn" data-i18n="order-btn">Hozir sotib olish</a>
+                        <a href="/contact" class="action-btn contact-btn" data-i18n="contact-btn">Rassom bilan bog'lanish</a>
                     </div>
                 </div>
             {% endfor %}
         </div>
     {% else %}
-        <div class="empty-info">
+        <div class="empty-info" data-i18n="empty-info">
             Hozircha bu bo‘limda ishlar mavjud emas.
             <br>
-            <a href="/order" class="order-link">Buyurtma berish</a>
+            <a href="/order" class="order-link" data-i18n="empty-order-link">Buyurtma berish</a>
         </div>
     {% endif %}
+
+    <script>
+        // Tarjimalar
+        const translations = {
+            "O‘z": {
+                "title": "Galereya – art_bintuali",
+                "logo": "art_bintuali",
+                "home": "Bosh sahifa",
+                "gallery": "Galereya",
+                "order": "Buyurtma",
+                "about": "Biz haqimizda",
+                "contact": "Kontakt",
+                "gallery-title": "Galereya",
+                "order-btn": "Hozir sotib olish",
+                "contact-btn": "Rassom bilan bog'lanish",
+                "empty-info": "Hozircha bu bo‘limda ishlar mavjud emas.",
+                "empty-order-link": "Buyurtma berish"
+            },
+            "Ru": {
+                "title": "Галерея – арт_бинтуали",
+                "logo": "арт_бинтуали",
+                "home": "Главная",
+                "gallery": "Галерея",
+                "order": "Заказ",
+                "about": "О нас",
+                "contact": "Контакты",
+                "gallery-title": "Галерея",
+                "order-btn": "Купить сейчас",
+                "contact-btn": "Связаться с художником",
+                "empty-info": "Пока что в этом разделе нет работ.",
+                "empty-order-link": "Сделать заказ"
+            },
+            "En": {
+                "title": "Gallery – art_bintuali",
+                "logo": "art_bintuali",
+                "home": "Home",
+                "gallery": "Gallery",
+                "order": "Order",
+                "about": "About us",
+                "contact": "Contact",
+                "gallery-title": "Gallery",
+                "order-btn": "Buy now",
+                "contact-btn": "Contact the artist",
+                "empty-info": "Currently, there are no works in this section.",
+                "empty-order-link": "Order now"
+            }
+        };
+
+        // Cookie helpers
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0;i < ca.length;i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Sahifa yuklanganda cookie-dan tilni o‘qib, matnlarni o‘zgartirish
+        document.addEventListener('DOMContentLoaded', function () {
+            let savedLang = getCookie("site_lang") || "O‘z";
+            setLanguage(savedLang);
+        });
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName.toLowerCase() === "title") {
+                        document.title = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

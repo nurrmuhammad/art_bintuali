@@ -1,85 +1,240 @@
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <title>art_bintuali</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #f3f6fa;
-        }
-        .navbar {
-            border-radius: 0 0 22px 22px;
-            margin-top: 18px;
-            margin-bottom: 38px;
-            background: linear-gradient(90deg, #23376b 0%, #e5eaf3 90%);
-            box-shadow: 0 6px 28px 0 rgba(35,55,107,0.12);
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 26px;
-            letter-spacing: 2px;
-            color: #23376b !important;
-            transition: color .19s;
-        }
-        .navbar-brand:hover {
-            color: #4567c6 !important;
-        }
-        .nav-link {
-            font-weight: 500;
-            padding: 8px 20px !important;
-            border-radius: 22px;
-            margin: 0 4px;
-            color: #23376b !important;
-            transition: background 0.18s, color 0.18s;
-        }
-        .nav-link:hover, .nav-link.active {
-            background: #23376b;
-            color: #fff !important;
-        }
-        @media (max-width: 991px) {
-            .navbar {
-                border-radius: 0 0 18px 18px;
-                margin-top: 0;
-                margin-bottom: 28px;
-            }
-            .navbar-collapse {
-                background: #e5eaf3;
-                border-radius: 0 0 18px 18px;
-                box-shadow: 0 6px 16px rgba(35,55,107,0.08);
-                padding: 12px 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- NAVBAR START -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm py-2">
-        <div class="container">
-            <a class="navbar-brand" href="/">art_bintuali</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-                    aria-expanded="false" aria-label="Menyuni ochish">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/">Bosh sahifa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/gallery">Galereya</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/order">Buyurtma</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about">Biz haqimizda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
-                </ul>
+<!-- templates/navbar.html -->
+<nav class="navbar-main">
+    <div class="navbar-inner">
+        <div class="logo" data-i18n="logo">art_bintuali</div>
+        <div class="nav-links">
+            <a href="/" class="nav-item {% if active=='home' %}active{% endif %}" data-i18n="home">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item {% if active=='gallery' %}active{% endif %}" data-i18n="gallery">Galereya</a>
+            <a href="/order" class="nav-item {% if active=='order' %}active{% endif %}" data-i18n="order">Buyurtma</a>
+            <a href="/about" class="nav-item {% if active=='about' %}active{% endif %}" data-i18n="about">Biz haqimizda</a>
+            <a href="/contact" class="nav-item {% if active=='contact' %}active{% endif %}" data-i18n="contact">Kontakt</a>
+            {% if show_language %}
+            <div class="lang-select" id="langSelect">
+                <i class="ri-global-line lang-icon"></i>
+                <span id="langCurrent">O‘z</span>
+                <i class="ri-arrow-down-s-line lang-arrow"></i>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-option" data-lang="O‘z">O‘z</div>
+                    <div class="lang-option" data-lang="Ru">Ru</div>
+                    <div class="lang-option" data-lang="En">En</div>
+                </div>
             </div>
+            {% endif %}
         </div>
-    </nav>
-    <!-- NAVBAR END -->
+    </div>
+    <!-- TEPA oq chiziq -->
+    <svg class="navbar-line-top" viewBox="0 0 1920 18" width="100%" height="18" style="position:absolute;top:0;left:0;">
+        <path d="M0,9 Q650,20 1920,9" stroke="#fff" stroke-width="2.6" fill="none" opacity="0.84"/>
+    </svg>
+    <!-- PASTKI TO‘LQIN -->
+    <svg class="navbar-wave" viewBox="0 0 1920 90" width="100%" height="90">
+        <path fill="#fdfcfb" fill-opacity="0.96" d="M0,35 Q480,90 960,50 Q1440,10 1920,60 L1920,90 L0,90 Z"/>
+        <path d="M0,40 Q480,95 960,55 Q1440,15 1920,65" stroke="#fff" stroke-width="3.2" fill="none" opacity="0.90"/>
+    </svg>
+</nav>
+<style>
+/* ... siz hohlagan css shu yerda bo'lsa hammasini ishlatavering ... */
+.navbar-main {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px 15px 40px;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 2px 16px rgba(150, 120, 80, 0.08);
+    border-radius: 0 0 22px 22px;
+    position: relative;
+}
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #a48252;
+    letter-spacing: 1px;
+    user-select: none;
+    text-shadow: 0 2px 10px #e9e0cc3c;
+}
+.nav-links {
+    display: flex;
+    gap: 27px;
+    align-items: center;
+}
+.nav-item {
+    font-size: 16px;
+    text-decoration: none;
+    color: #856846;
+    font-weight: 500;
+    padding: 3px 0 5px 0;
+    border-bottom: 2.5px solid transparent;
+    transition: color 0.3s, border-color 0.18s;
+    position: relative;
+}
+.nav-item.active, .nav-item:hover {
+    color: #bfa573;
+    border-bottom: 2.5px solid #bfa573;
+}
+.navbar-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100vw;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+}
+.navbar-line-top {
+    position: absolute;
+    left: 0;
+    top: -12px;
+    width: 100vw;
+    z-index: 11;
+    pointer-events: none;
+}
+.lang-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f7ecd9;
+    color: #8b6b39;
+    padding: 8px 20px 8px 15px;
+    border-radius: 17px;
+    font-size: 1.09rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 12px #c5b09117;
+    border: 1.5px solid #d6c0a0;
+    transition: background 0.17s, border 0.16s;
+    position: relative;
+    margin-left: 20px;
+    user-select: none;
+}
+.lang-select:hover, .lang-select.active {
+    background: #efdcbb;
+    border: 1.6px solid #ad8952;
+}
+.lang-icon { font-size: 1.19rem; margin-right: 2px; }
+.lang-arrow { font-size: 1.05rem; margin-left: 1px; transition: transform 0.19s;}
+.lang-select.active .lang-arrow { transform: rotate(180deg);}
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background: #fff9ef;
+    border-radius: 13px;
+    min-width: 98px;
+    box-shadow: 0 5px 30px #bfa57a21;
+    z-index: 33;
+    padding: 8px 0;
+    border: 1.2px solid #f4e6cd;
+}
+.lang-select.active .lang-dropdown { display: block; }
+.lang-option {
+    padding: 10px 26px 10px 21px;
+    color: #8b6b39;
+    font-size: 1.08rem;
+    cursor: pointer;
+    transition: background 0.14s, color 0.14s;
+}
+.lang-option:hover {
+    background: #f3eadc;
+    color: #ad8952;
+}
+@media (max-width: 900px) {
+    .navbar-inner { padding: 11px 10px 7px 10px; flex-direction: column; align-items: flex-start;}
+    .logo { font-size: 18px;}
+    .nav-links { gap: 10px; }
+    .navbar-wave { height: 32px;}
+    .navbar-line-top { height: 8px;}
+}
+</style>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<script>
+/* Tarjima funksiyasi har doim barcha sahifalarda ishlashi uchun */
+const translations = {
+    "O‘z": {
+        "logo": "art_bintuali",
+        "home": "Bosh sahifa",
+        "gallery": "Galereya",
+        "order": "Buyurtma",
+        "about": "Biz haqimizda",
+        "contact": "Kontakt"
+    },
+    "Ru": {
+        "logo": "арт_бинтуали",
+        "home": "Главная",
+        "gallery": "Галерея",
+        "order": "Заказ",
+        "about": "О нас",
+        "contact": "Контакты"
+    },
+    "En": {
+        "logo": "art_bintuali",
+        "home": "Home",
+        "gallery": "Gallery",
+        "order": "Order",
+        "about": "About",
+        "contact": "Contact"
+    }
+};
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function setLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+    // Faqat bosh sahifada show_language=True bo'lsa lang-select chiqadi
+    var langSelect = document.getElementById('langSelect');
+    var langCurrent = document.getElementById('langCurrent');
+    // Default tilni o‘rnatish va tarjima qilish
+    let savedLang = getCookie("site_lang") || "O‘z";
+    if(langCurrent) langCurrent.textContent = savedLang;
+    setLanguage(savedLang);
+
+    // Agar lang-select mavjud bo‘lsa (ya'ni faqat bosh sahifada)
+    if(langSelect) {
+        document.addEventListener('click', function(e) {
+            if (langSelect.contains(e.target)) {
+                langSelect.classList.toggle('active');
+            } else {
+                langSelect.classList.remove('active');
+            }
+        });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                langCurrent.textContent = lang;
+                setCookie("site_lang", lang, 30);
+                langSelect.classList.remove('active');
+                setLanguage(lang);
+            });
+        });
+    }
+});
+</script>

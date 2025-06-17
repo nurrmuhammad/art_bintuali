@@ -2,10 +2,12 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Biz haqimizda – art_bintuali</title>
+    <title data-i18n="title">Biz haqimizda – art_bintuali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+    <!-- Remixicon for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -68,24 +70,24 @@
 </head>
 <body>
     <header class="navbar" data-aos="fade-down" data-aos-duration="700">
-        <div class="logo">art_bintuali</div>
+        <div class="logo" data-i18n="logo">art_bintuali</div>
         <nav class="nav-links">
-            <a href="/" class="nav-item">Bosh sahifa</a>
-            <a href="/gallery" class="nav-item">Galereya</a>
-            <a href="/order" class="nav-item">Buyurtma</a>
-            <a href="/about" class="nav-item">Biz haqimizda</a>
-            <a href="/contact" class="nav-item">Kontakt</a>
+            <a href="/" class="nav-item" data-i18n="home">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item" data-i18n="gallery">Galereya</a>
+            <a href="/order" class="nav-item" data-i18n="order">Buyurtma</a>
+            <a href="/about" class="nav-item" data-i18n="about">Biz haqimizda</a>
+            <a href="/contact" class="nav-item" data-i18n="contact">Kontakt</a>
         </nav>
     </header>
 
     <div class="about-card" data-aos="zoom-in" data-aos-delay="300">
         <img src="https://img.icons8.com/clouds/100/000000/paint-palette.png" alt="icon" class="about-img" data-aos="flip-left" data-aos-delay="500">
-        <h2>Biz haqimizda</h2>
-        <p>
+        <h2 data-i18n="about-h2">Biz haqimizda</h2>
+        <p data-i18n="about-p1">
             <b>Art_Bintuali</b> — bu ijod va san’atni qadrlovchilar uchun yaratilgan zamonaviy platforma.<br>
             Bizda siz noan’anaviy kaligrafiya, zamonaviy san’at va betakror buyurtmalar uchun san’at asarlarini topishingiz mumkin.
         </p>
-        <p>
+        <p data-i18n="about-p2">
             Har bir rasm — o‘ziga xos ijodiy energiya, o‘ziga xos tuyg‘u va hissiyot! Biz bilan zamonaviy dizayn va an’anaviy qadriyatlar uyg‘unlashadi.
         </p>
     </div>
@@ -93,5 +95,80 @@
     <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>AOS.init({ duration: 900, once: true });</script>
+    <script>
+        // Tarjimalar
+        const translations = {
+            "O‘z": {
+                "title": "Biz haqimizda – art_bintuali",
+                "logo": "art_bintuali",
+                "home": "Bosh sahifa",
+                "gallery": "Galereya",
+                "order": "Buyurtma",
+                "about": "Biz haqimizda",
+                "contact": "Kontakt",
+                "about-h2": "Biz haqimizda",
+                "about-p1": "<b>Art_Bintuali</b> — bu ijod va san’atni qadrlovchilar uchun yaratilgan zamonaviy platforma.<br>Bizda siz noan’anaviy kaligrafiya, zamonaviy san’at va betakror buyurtmalar uchun san’at asarlarini topishingiz mumkin.",
+                "about-p2": "Har bir rasm — o‘ziga xos ijodiy energiya, o‘ziga xos tuyg‘u va hissiyot! Biz bilan zamonaviy dizayn va an’anaviy qadriyatlar uyg‘unlashadi."
+            },
+            "Ru": {
+                "title": "О нас – арт_бинтуали",
+                "logo": "арт_бинтуали",
+                "home": "Главная",
+                "gallery": "Галерея",
+                "order": "Заказ",
+                "about": "О нас",
+                "contact": "Контакты",
+                "about-h2": "О нас",
+                "about-p1": "<b>Art_Bintuali</b> — это современная платформа для ценителей творчества и искусства.<br>У нас вы найдете произведения для нестандартной каллиграфии, современного искусства и уникальных заказов.",
+                "about-p2": "Каждая картина — особая творческая энергия, свои чувства и эмоции! С нами сочетаются современный дизайн и традиционные ценности."
+            },
+            "En": {
+                "title": "About us – art_bintuali",
+                "logo": "art_bintuali",
+                "home": "Home",
+                "gallery": "Gallery",
+                "order": "Order",
+                "about": "About us",
+                "contact": "Contact",
+                "about-h2": "About us",
+                "about-p1": "<b>Art_Bintuali</b> is a modern platform for those who value creativity and art.<br>Here you can find works for non-traditional calligraphy, modern art, and exclusive custom orders.",
+                "about-p2": "Every painting is unique creative energy, unique feelings and emotions! With us, modern design and traditional values are combined."
+            }
+        };
+
+        // Cookie helpers
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0;i < ca.length;i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Sahifa yuklanganda cookie-dan tilni o‘qib, o‘sha tilda ko‘rsatish
+        document.addEventListener('DOMContentLoaded', function () {
+            let savedLang = getCookie("site_lang") || "O‘z";
+            setLanguage(savedLang);
+        });
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // Matn html bo‘lsa (p uchun), innerHTML qilib yozamiz
+                    if (key.startsWith('about-p')) {
+                        el.innerHTML = translations[lang][key];
+                    } else if (el.tagName.toLowerCase() === "title") {
+                        document.title = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

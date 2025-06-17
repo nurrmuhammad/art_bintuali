@@ -3,58 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin panel – art_bintuali</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AOS CSS (animatsiya uchun) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+    <style>
+        body {
+            background: linear-gradient(120deg, #eee8de 0%, #cfc9be 100%);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 16px rgba(140, 130, 100, 0.07);
+            border-radius: 0 0 22px 22px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .logo { font-size: 22px; font-weight: bold; color: #7c6855; letter-spacing: 0.5px;}
+        .nav-links { display: flex; gap: 27px;}
+        .nav-item { font-size: 16px; text-decoration: none; color: #705f46; font-weight: 500; padding: 3px 0; transition: color 0.3s;}
+        .nav-item:hover { color: #ad9170; }
+
+        .admin-panel {
+            max-width: 770px;
+            margin: 44px auto 0 auto;
+            background: #fcfbf8ee;
+            border-radius: 22px;
+            box-shadow: 0 7px 32px rgba(120, 100, 80, 0.09);
+            padding: 40px 38px 26px 38px;
+        }
+        .admin-panel h2 {
+            color: #7c6855;
+            margin-bottom: 25px;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-align: left;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+            margin-bottom: 40px;
+        }
+        label {
+            color: #7c6855;
+            font-size: 1.09rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        input[type="text"], textarea, select, input[type="file"] {
+            padding: 11px 12px;
+            border-radius: 11px;
+            border: 1px solid #ded5c2;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #f7f5f0;
+            margin-bottom: 3px;
+            outline: none;
+            transition: border 0.16s;
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border: 1.5px solid #ad9170;
+        }
+        textarea { resize: vertical; min-height: 46px;}
+        button, .btn {
+            background: #ad9170;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            padding: 13px 0;
+            border-radius: 11px;
+            box-shadow: 0 3px 16px #ad917011;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: background 0.18s, color 0.16s, transform 0.15s;
+        }
+        button:hover, .btn:hover {
+            background: #7c6855;
+            color: #fff4e4;
+            transform: scale(1.04);
+        }
+        .gallery-preview {
+            margin-top: 52px;
+        }
+        .gallery-title {
+            color: #6e5a3d;
+            font-size: 1.45rem;
+            margin-bottom: 13px;
+        }
+        .gallery-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px 16px;
+        }
+        .card {
+            background: linear-gradient(120deg, #f7f3eb 65%, #e8e3d8 100%);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #ad917017;
+            padding: 15px 12px 20px 12px;
+            text-align: center;
+            width: 190px;
+            color: #7c6c54;
+            border: 1px solid #f0ece7;
+            position: relative;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 11px;
+            margin-bottom: 9px;
+            box-shadow: 0 3px 10px #bba38022;
+            height: 120px;
+            object-fit: cover;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 7px; right: 12px;
+            background: #e3665a;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 13px;
+            padding: 3px 9px;
+            cursor: pointer;
+            transition: background 0.16s;
+        }
+        .delete-btn:hover { background: #ba2e2e; }
+        @media (max-width: 900px) {
+            .admin-panel {padding: 22px 7vw 20px 7vw;}
+            .gallery-block { flex-direction: column; align-items: center; gap:15px;}
+            .card {width: 92vw; max-width: 330px;}
+        }
+        @media (max-width: 600px) {
+            .admin-panel {padding: 8px 1vw;}
+            .card {width: 97vw;}
+            .gallery-block {gap:9px;}
+        }
+    </style>
 </head>
 <body>
-    {% include 'navbar.html' %}
-    <div class="container py-5">
+    <header class="navbar">
+        <div class="logo">art_bintuali</div>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Bosh sahifa</a>
+            <a href="/gallery" class="nav-item">Galereya</a>
+            <a href="/order" class="nav-item">Buyurtma</a>
+            <a href="/about" class="nav-item">Biz haqimizda</a>
+            <a href="/contact" class="nav-item">Kontakt</a>
+        </nav>
+    </header>
+
+    <div class="admin-panel" data-aos="fade-up">
         <h2>Admin panel</h2>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for cat, msg in messages %}
-              <div class="alert alert-{{cat}}">{{ msg }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        <form method="POST" enctype="multipart/form-data" class="mb-5">
-            <div class="mb-3">
-                <label class="form-label">Rasm yuklash</label>
-                <input type="file" name="file" accept="image/*" class="form-control" required>
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <label>Rasm yuklash</label>
+                <input type="file" name="file" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Sarlavha</label>
-                <input type="text" name="title" class="form-control" required>
+            <div>
+                <label>Sarlavha</label>
+                <input type="text" name="title" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Tavsif</label>
-                <input type="text" name="desc" class="form-control" required>
+            <div>
+                <label>Tavsif</label>
+                <input type="text" name="desc" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Kategoriya</label>
-                <select name="category" class="form-control" required>
+            <div>
+                <label>Kategoriya</label>
+                <select name="category" required>
                     {% for c in categories %}
-                    <option value="{{ c }}">{{ c }}</option>
+                        <option value="{{ c }}">{{ c }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Qo‘shish</button>
+            <button type="submit">Qo‘shish</button>
         </form>
-        <h4>Yuklangan rasmlar</h4>
-        <div class="row">
-            {% for art in gallery %}
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <img src="{{ url_for('static', filename='uploads/' + art.filename) }}" class="card-img-top" style="height: 160px; object-fit: cover;">
-                    <div class="card-body">
-                        <h6>{{ art.title }}</h6>
-                        <div class="mb-2"><span class="badge bg-primary">{{ art.category }}</span></div>
-                        <p style="font-size:small">{{ art.desc }}</p>
-                        <a href="{{ url_for('delete', id=loop.index0) }}" class="btn btn-danger btn-sm">O‘chirish</a>
+        
+        <div class="gallery-preview">
+            <div class="gallery-title">Yuklangan rasmlar</div>
+            <div class="gallery-block">
+                {% for item in gallery %}
+                    <div class="card">
+                        <form action="{{ url_for('delete', id=loop.index0) }}" method="get" style="display:inline;">
+                            <button type="submit" class="delete-btn">🗑</button>
+                        </form>
+                        <img src="{{ url_for('static', filename='uploads/' ~ item.filename) }}" alt="Rasm">
+                        <div style="font-weight:600;">{{ item.title }}</div>
+                        <div style="font-size:13px;color:#9d8e76;margin:2px 0 6px 0;">{{ item.desc }}</div>
+                        <div style="font-size:13px; color:#b9a181;">Kategoriya: {{ item.category }}</div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
+    <!-- AOS JS (animation uchun) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>AOS.init({ duration: 900, once: true });</script>
 </body>
 </html>
