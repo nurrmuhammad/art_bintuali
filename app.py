@@ -12,8 +12,8 @@ GALLERY_FILE = 'data/gallery.json'
 CATEGORIES = ["art_colligrafiya", "dekorativniy", "naqqoshlik"]
 
 # === TELEGRAM BOT SOZLAMALARI ===
-TELEGRAM_BOT_TOKEN = "7603230946:AAFuvPaODwWfiFCkuFM6GdHavm6HejAPYoI"
-TELEGRAM_CHAT_ID = "7133850731"
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = ""
 # @userinfobot orqali olingan yoki guruh uchun -100... ko‘rinishida
 def send_telegram_order(name, phone, desc):
     text = (
